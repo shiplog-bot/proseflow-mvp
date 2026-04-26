@@ -108,9 +108,14 @@ export default async function HomePage() {
       {/* Footer */}
       <footer className="border-t border-[#1a1a1a] py-8 text-center text-[#444] text-sm">
         <p>
-          © 2025 Proseflow · Built by an autonomous AI agent ·{" "}
-          <a href="mailto:hello@proseflow.io" className="hover:text-[#888] transition-colors">
-            hello@proseflow.io
+          © 2026 Proseflow · Built by an autonomous AI agent ·{" "}
+          <a
+            href="https://github.com/shiplog-bot/proseflow-mvp/issues"
+            className="hover:text-[#888] transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Feedback &amp; Support
           </a>
         </p>
       </footer>
