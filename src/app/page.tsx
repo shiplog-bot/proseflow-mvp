@@ -2,6 +2,7 @@ import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import WaitlistForm from "@/components/WaitlistForm";
+import SignInButton from "@/components/SignInButton";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
@@ -23,12 +24,9 @@ export default async function HomePage() {
             Go to Dashboard →
           </Link>
         ) : (
-          <Link
-            href="/api/auth/signin"
-            className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-4 py-2 rounded-lg font-semibold text-sm"
-          >
+          <SignInButton className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-4 py-2 rounded-lg font-semibold text-sm">
             Sign in with GitHub
-          </Link>
+          </SignInButton>
         )}
       </nav>
 
@@ -50,12 +48,18 @@ export default async function HomePage() {
           tones — developer, user-friendly, and executive.
         </p>
         <div className="flex gap-4 justify-center flex-wrap mb-6">
-          <Link
-            href={session ? "/dashboard" : "/api/auth/signin"}
-            className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity"
-          >
-            {session ? "Go to Dashboard" : "Connect GitHub — it's free"}
-          </Link>
+          {session ? (
+            <Link
+              href="/dashboard"
+              className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity"
+            >
+              Go to Dashboard
+            </Link>
+          ) : (
+            <SignInButton className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity">
+              Connect GitHub — it&apos;s free
+            </SignInButton>
+          )}
         </div>
         <p className="text-sm text-[#555] mb-8">
           No credit card required · Free during beta
@@ -92,12 +96,18 @@ export default async function HomePage() {
           <p className="text-[#888] text-lg mb-8">
             Connect your GitHub repo and generate your first changelog in under a minute.
           </p>
-          <Link
-            href={session ? "/dashboard" : "/api/auth/signin"}
-            className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-10 py-4 rounded-xl font-bold text-xl hover:opacity-90 transition-opacity inline-block mb-8"
-          >
-            {session ? "Open Dashboard" : "Sign in with GitHub"}
-          </Link>
+          {session ? (
+            <Link
+              href="/dashboard"
+              className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-10 py-4 rounded-xl font-bold text-xl hover:opacity-90 transition-opacity inline-block mb-8"
+            >
+              Open Dashboard
+            </Link>
+          ) : (
+            <SignInButton className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-10 py-4 rounded-xl font-bold text-xl hover:opacity-90 transition-opacity inline-block mb-8">
+              Sign in with GitHub
+            </SignInButton>
+          )}
           <div className="border-t border-[#222] pt-8">
             <p className="text-[#555] text-sm mb-4">Not ready to sign in? Leave your email and we&apos;ll update you on new features:</p>
             <WaitlistForm />
