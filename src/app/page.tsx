@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
+import WaitlistForm from "@/components/WaitlistForm";
 
 export default async function HomePage() {
   const session = await getServerSession(authOptions);
@@ -48,7 +49,7 @@ export default async function HomePage() {
           range, and Proseflow generates polished release notes in three
           tones — developer, user-friendly, and executive.
         </p>
-        <div className="flex gap-4 justify-center flex-wrap">
+        <div className="flex gap-4 justify-center flex-wrap mb-6">
           <Link
             href={session ? "/dashboard" : "/api/auth/signin"}
             className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-8 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-opacity"
@@ -56,7 +57,7 @@ export default async function HomePage() {
             {session ? "Go to Dashboard" : "Connect GitHub — it's free"}
           </Link>
         </div>
-        <p className="mt-4 text-sm text-[#555]">
+        <p className="text-sm text-[#555] mb-8">
           No credit card required · Free during beta
         </p>
       </section>
@@ -84,7 +85,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Email capture / CTA */}
       <section className="bg-[#111] border-t border-[#1e1e1e] py-20">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <h2 className="text-4xl font-extrabold mb-4">Try it now — free</h2>
@@ -93,10 +94,14 @@ export default async function HomePage() {
           </p>
           <Link
             href={session ? "/dashboard" : "/api/auth/signin"}
-            className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-10 py-4 rounded-xl font-bold text-xl hover:opacity-90 transition-opacity inline-block"
+            className="bg-gradient-to-r from-[#7c8cf8] to-[#a78bfa] text-white px-10 py-4 rounded-xl font-bold text-xl hover:opacity-90 transition-opacity inline-block mb-8"
           >
             {session ? "Open Dashboard" : "Sign in with GitHub"}
           </Link>
+          <div className="border-t border-[#222] pt-8">
+            <p className="text-[#555] text-sm mb-4">Not ready to sign in? Leave your email and we&apos;ll update you on new features:</p>
+            <WaitlistForm />
+          </div>
         </div>
       </section>
 
